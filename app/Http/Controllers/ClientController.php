@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Client;
+use App\Repositories\ClientRepository;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+    /*
+     * @var ClientRepository
      */
-    public function index()
+
+    private $repository;
+
+    public function __construct(ClientRepository $repository)
     {
-        return \App\Client::all();
+        $this->repository = $repository;
+    }
+
+    public function index(ClientRepository $repository)
+    {
+          return $this->repository->all();
     }
 
     /**
@@ -38,7 +42,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return Client::create($request->all());
+        return $this->repository->create($request->all());
     }
 
     /**
@@ -49,7 +53,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return Client::find($id);
+        return $this->repository->find($id);
     }
 
     /**
