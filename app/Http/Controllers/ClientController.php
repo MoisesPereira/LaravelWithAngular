@@ -65,7 +65,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->repository->update($request->all(), $id);
     }
 
     /**
