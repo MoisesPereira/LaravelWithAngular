@@ -30,3 +30,13 @@ $factory->define(App\Entities\Client::class, function (Faker\Generator $faker) {
         'obs' => $faker->sentence,
     ];
 });
+
+$factory->define(App\Entities\Project::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->sentence,
+        'progress' => $faker->sentence,
+        'status' => $faker->sentence,
+        'due_date' => $faker->date()
+    ];
+});
